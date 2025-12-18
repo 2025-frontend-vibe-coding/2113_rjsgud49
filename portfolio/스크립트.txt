@@ -1,0 +1,262 @@
+![스크린샷 2025-05-20 205355.png](attachment:e082a31b-f784-4ab4-a23d-c88b6edffd40:스크린샷_2025-05-20_205355.png)
+
+# 안녕하세요  성장을 추구하는 개발자 박건형입니다.
+
+### 📧 이메일: qkrrjsgud49@gmail.com
+
+### 📞 phone: 010-5696-6817
+
+### :github-light: Github: [rjsgud49](https://github.com/rjsgud49)
+
+### :notion-light: Notion: [Notion](https://www.notion.so/23239cf2021280d38c98ebb5712232c8?pvs=21)
+
+### :linkedin: Linkdin: [Linkdin](https://www.linkedin.com/in/%EA%B1%B4%ED%98%95-%EB%B0%95-6631b8320/)
+
+### [👩🏻‍💻 Projects](https://www.notion.so/Projects-23239cf20212801482e3c29946227db1?pvs=21)
+
+### [⚒️ Skills](https://www.notion.so/Skills-23239cf20212808f94f9d6e588eafd60?pvs=21)
+
+### [🔎 Profile](https://www.notion.so/Profile-23239cf2021280549489d4c022fee3c4?pvs=21)
+
+### [💫 About me ](https://www.notion.so/About-me-23239cf2021280c8b757ee693b90fbe3?pvs=21)
+
+### [🙋🏻 How i work ](https://www.notion.so/How-i-work-2b439cf202128059bf4bf29bf307b6cd?pvs=21)
+
+# 👩🏻‍💻 Projects
+
+![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3bf902c4-03b0-4218-9247-b0c8d315939b/Line_1_(1).png)
+
+## [ROOMIT] 청년 주거 문제 해결 플랫폼 2025.3~2025.7
+
+---
+
+![image.png](attachment:25835b0f-0494-49fa-98c3-31d7956f1b20:image.png)
+
+프로젝트 목적
+
+- 1인 가구 청년 층은 높은 월세, 사회적 고립, 룸메이트와의 갈등 등의 문제를 자주 겪음. 특히 성향 차이로 인한 갈등은 단순한 매물 제공만으로는 해결되지 않으며, 개인의 생활 습관과 성향을 반영한 매칭 시스템이 필요함을 느낌으로써 개발하게 됨.
+
+**사용기술**
+
+- vite+React+JS
+- spring, fastapi
+
+**역할**
+
+- 백엔드 1명,  AI 1명, 프론트 2명
+
+**성과**
+
+- 교내 캡스톤 프로젝트 금상
+
+---
+
+![image.png](attachment:f0417c65-0db7-4a85-87ca-b45e0e90b1f0:image.png)
+
+![image.png](attachment:c6e11ec7-2344-4315-a4df-777c89556e6b:image.png)
+
+- 마이페이지& 내 정보수정페이지
+    - 내 정보 확인기능
+    - 내 정보 수정기능
+
+![image.png](attachment:0d51a3ea-9fd3-4996-8763-7160c4bece60:image.png)
+
+![image.png](attachment:571ad846-a37c-49ad-8249-617662784dcc:image.png)
+
+- 채팅페이지
+    - soket io를 사용하여
+        
+        각 유저별 1 : 1실시간 채팅 기능구현
+        
+    
+
+# 팀 프로젝트 회고
+
+이번 프로젝트는 장기적인 개발 일정에 대한 **경험이 부족**했던 만큼, 초기에 **일정 관리와 역할 분배**에서 **어려움**을 겪었습니다. 기획 발표 전까지는 4인이 원활한 커뮤니케이션을 통해 문제 상황을 구체화하고, 이에 맞는 솔루션을 도출하는 데 집중했습니다. 그러나 해당 솔루션을 기술적으로 어떻게 구현할지, 사용자 데이터 구조를 어떻게 설계할지는 충분히 논의되지 않아, 이후 **개발 단계**에서 여러 **문제가 발생**했습니다.
+
+예를 들어, 기능별 데이터 스키마가 백엔드 DB 구조와 일치하지 않거나, 일부 기능이 중복 또는 누락되는 등의 혼선이 생겼습니다. 이러한 상황에서 중간 발표를 맞이하게 되었고, **준비**가 **부족**한 상태로 급히 발표 자료를 제작하여 결과적으로 구현한 기능을 충분히 보여주지 못한 점이 아쉬움으로 남았습니다.
+
+이후, 팀원들과 Notion과 Discord를 통해 더욱 구체적인 진행 상황을 공유하며 **일정과 역할**을 **체계적으로 재정비**하였습니다. 각자의 작업물에 대해 수시로 피드백을 주고받으며 기능 간 연결성과 데이터 일관성을 확보했고, 최종 발표에서는 계획했던 주요 기능들을 전부 구현 및 시연할 수 있었습니다.
+
+이번 경험을 통해 **계획 수립과 기술적 설계의 중요성**, 그리고 **일정 관리를 통한 팀워크 강화**가 프로젝트 완성도에 얼마나 직결되는지를 체감할 수 있었으며, 이후의 프로젝트에서는 이를 바탕으로 더욱 철저한 준비와 커뮤니케이션을 실천하고 있습니다.
+
+## [Echovo] AI 기반 기술면접 서비스  2025.7~2025.8
+
+---
+
+![image.png](attachment:3ccabd0c-0c2b-456a-b208-c32088dd7f3a:0e5b6cee-d2c6-48ad-ba43-fc7146e9a5bf.png)
+
+개발 동기
+
+- 개발자 취업시장에서 중요한 기술면접을 효율적으로 말하며 연습 하기위해 제작한 프로젝트 입니다.
+
+**사용기술**
+
+- vite+React+ ts
+- openAPI
+
+**성과**
+
+- jspdf라이브러리 사용법을 숙지할수있었다.
+- openAPI에 원하는 프롬포트로 원하는 값을 출력할수있었다.
+- 브라우저에서 마이크 권한을 호출하는 구조를 학습할수있었습니다
+- recharts와echarts차이점을 크게 느끼며 각 용도에 맞게 사용할수있게 되었다
+
+![image.png](attachment:13f54eb1-1631-41e0-974c-5812bc4bee62:image.png)
+
+- 면접 통계 페이지
+    - 면접페이지에서 어떠한기술을 사용하여 받은 데이터를 관리한다
+    - 페이지 마운트시 초기입력 정보에 기반하여 질문이 생성되고  답변시에 피드백과 질문에대한 최선의 답변을 제공합니다
+    
+
+![image.png](attachment:ab032bdd-61fb-4a16-ad9a-eda6170e0163:image.png)
+
+- 면접 통계 페이지
+    - 면접페이지에서 어떠한기술을 사용하여 받은 데이터를 관리한다
+    - 페이지 마운트시 초기입력 정보에 기반하여 질문이 생성되고  답변시에 피드백과 질문에대한 최선의 답변을 제공합니다
+    
+
+![image.png](attachment:606a6082-3580-421d-add1-a693ee6769fa:image.png)
+
+- 면접 통계 페이지
+    - 면접페이지에서 어떠한기술을 사용하여 받은 데이터를 관리한다
+    - 페이지 마운트시 초기입력 정보에 기반하여 질문이 생성되고  답변시에 피드백과 질문에대한 최선의 답변을 제공합니다
+    
+
+# 개인 프로젝트 회고
+
+해당 프로젝트는 멘토와 함께 약 1주일간 단기간 집중 개발한 개인 프로젝트로, OpenAPI를 활용하는 과제가 포함되어 있었습니다. 
+
+기획 단계에서 진로와 직접적으로 관련된 주제를 찾던 중, 'AI 기술 면접 코치'라는 주제를 선정하게 되었습니다.
+
+핵심 기능은 AI를 통해 면접 질문을 생성하고, 사용자의 답변을 분석하여 피드백을 제공하는 것으로, 주요 기능은 다음과 같이 3가지로 정리됩니다:
+
+1. **면접 질문 생성** – 사용자의 입력(직무, 기술스택 등)을 기반으로 GPT API를 활용해 맞춤형 질문을 생성
+2. **답변 수집 및 피드백** – 사용자의 답변을 기반으로 AI가 피드백을 제공하고, 개선점을 제안
+3. **기록 및 분석** – 면접 로그를 기록하고 이를 기반으로 Recharts를 활용한 시각화 통계를 제공
+
+개발 도중, 사용자가 남긴 면접 로그에 제목을 부여하는 방식에서 고민이 있었으나, AI를 통해 질문 내용을 요약해 자동으로 제목을 생성하는 방식을 적용하였습니다. 또한 반복 사용을 유도하고 사용자 경험을 개선하기 위해, 사용자 수준을 고려한 목표 설정 알고리즘을 직접 설계하여 AI에 연동하였습니다.
+
+오프라인 활용성을 높이기 위해 jsPDF를 사용한 PDF 출력 기능도 구현하였으며, 이를 통해 사용자가 자신의 면접 기록을 문서로 저장할 수 있도록 했습니다.
+
+이번 프로젝트는 OpenAI API, Recharts, jsPDF 등 다양한 기술 스택을 단기간에 실제 서비스 흐름에 맞춰 통합하고, 기획부터 개발까지 전 과정을 주도적으로 경험한 의미 있는 프로젝트였습니다. 특히 AI를 적극적으로 기능에 녹여내며 사용자 경험을 개선하는 방향을 구체화할 수 있었던 점에서 큰 성장을 느꼈습니다.
+
+# 🔎 Profile
+
+![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3bf902c4-03b0-4218-9247-b0c8d315939b/Line_1_(1).png)
+
+## 🎖️ **Awards & Experience**
+
+## **🎓 Education & License**
+
+해커그라운드 해커톤 2024in의성 장려상 2024.08
+
+교내 전공동아리 Ada부원 2024.09
+
+ 교내 전공동아리 Ada부장
+
+가족과 함께하는 디지털· SW-AI 체험캠프 생성형 AI활용  체험부스 운영 2025.06 
+
+교내동계 해커톤 장려상 2024.01
+
+교내 캡스톤 프로젝트 금상 2025.07.17
+
+ 경북소프트웨어마이스터고등학교  2024.3 
+
+  **2024 KDB Develop Youth Camp 2기 수료  2024.7**
+
+정보처리기능사 2025.9
+
+리눅스 마스터 2025.5
+
+# ⚒️ Skills
+
+![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3bf902c4-03b0-4218-9247-b0c8d315939b/Line_1_(1).png)
+
+**Hard Skills**
+
+- React
+    - JavaScript/TypeScript
+        - TypeScript로 컴포넌트, 커스텀 훅 등 개발 경험
+        - Zustand/Redux 상태관리와 함께 TS 적용
+    - React 생태계
+        
+        recoill
+        
+        Redux
+        
+        context
+        
+        memoization
+        
+    - hook  능동사용
+        
+        `useState` ,`useEffect` ,`useRef`, 
+        
+        `useMemouseCallbackuse` ,
+        
+        `ContextuseReduceruseNavigate`, `useParams` 
+        
+- Springboot
+
+**Soft Skills**
+
+- 커뮤니케이션
+    
+    내외부 파트너 협업
+    
+    외부 업체 핸들링 
+    
+- 문제 해결 능력
+    
+    디버깅, 원인 분석, 빠른 해결책 제시
+    
+- 스케줄링
+    
+    정기적으로 작업 진척도를 검토하고, 문제 발생 시 즉각 조치
+    
+    각 인원의 역할과 책임을 명확히 정의해 협업 효율 극대화
+    
+
+**Tools**
+
+- 버전 관리
+    
+    Git, 
+    
+    GitHub
+    
+- 디자인 툴 핸들링
+    
+    Figma, 파일 이해 및 개발 반영
+    
+- 프로젝트 관리
+    
+    Notion, discord 등 협업툴 능숙 사용
+    
+- CI/CD
+    
+    GitHub Actions, Vercel, gcp, aws 배포 경험
+    
+
+# 🙋🏻 How i work
+
+![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3bf902c4-03b0-4218-9247-b0c8d315939b/Line_1_(1).png)
+
+- 회사와 세상에 긍정적 영향을 주는 일은 그 자체로 동기부여가 됩니다.
+- 목표 달성도 중요하지만 일의 과정에서 재미를 찾는 편이에요.
+- 문제가 생겨도 그 상황 안에서 일을 진행할 수 있는 방향을 찾습니다.
+- 항상 배우려는 자세로
+- 함께 정한 기한은 반드시 지키려고 노력해요.
+
+# 💫 About me
+
+![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3bf902c4-03b0-4218-9247-b0c8d315939b/Line_1_(1).png)
+
+- **🗂️Tech Blog**
+
+[rjsgud49 (박건형) / 작성글 - velog](https://velog.io/@rjsgud49/posts)
+
+- 포트폴리오 웹페이지
+
+[rjsgud49 portfolio](https://rjsgud.com/)
