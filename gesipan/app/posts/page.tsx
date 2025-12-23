@@ -1,11 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/store/store'
 import { postApi } from '@/services/api'
 import Header from '@/components/Header'
+import { getErrorMessage } from '@/utils/errorHandler'
+import { cache } from '@/utils/cache'
 
 export default function CreatePostPage() {
   const router = useRouter()
@@ -19,7 +21,7 @@ export default function CreatePostPage() {
     return null
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setLoading(true)
@@ -27,21 +29,23 @@ export default function CreatePostPage() {
     try {
       const response = await postApi.createPost(formData)
       if (response.success) {
+        // 게시글 목록 캐시 무효화
+        cache.clear()
         router.push('/')
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || '게시글 작성에 실패했습니다.')
+      setError(getErrorMessage(err))
     } finally {
       setLoading(false)
     }
-  }
+  }, [formData, router])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    })
-  }
+    }))
+  }, [])
 
   return (
     <div className="min-h-screen bg-white">
@@ -51,7 +55,7 @@ export default function CreatePostPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-              제목 (10자 이상)
+              제목 (1자 이상, 35자 이하)
             </label>
             <input
               type="text"
@@ -60,9 +64,13 @@ export default function CreatePostPage() {
               value={formData.title}
               onChange={handleChange}
               required
-              minLength={10}
+              minLength={1}
+              maxLength={50}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
             />
+            <p className="mt-1 text-sm text-gray-500">
+              {formData.title.length}/50
+            </p>
           </div>
 
           <div>
@@ -82,7 +90,9 @@ export default function CreatePostPage() {
           </div>
 
           {error && (
-            <div className="text-red-500 text-sm">{error}</div>
+            <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-600 text-sm">{error}</p>
+            </div>
           )}
 
           <div className="flex justify-end space-x-4">
@@ -95,7 +105,7 @@ export default function CreatePostPage() {
             </button>
             <button
               type="submit"
-              disabled={loading || formData.title.length < 10 || formData.body.length < 10}
+              disabled={loading || formData.title.length < 1 || formData.title.length > 50 || formData.body.length < 10}
               className="px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? '작성 중...' : '작성하기'}

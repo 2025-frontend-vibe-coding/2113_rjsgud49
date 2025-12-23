@@ -1,17 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback, memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '@/store/slices/authSlice'
 import { authApi } from '@/services/api'
 import { useRouter } from 'next/navigation'
+import { getErrorMessage, getFieldErrors } from '@/utils/errorHandler'
 
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void
 }
 
-export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
+function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [isLogin, setIsLogin] = useState(true)
   const [formData, setFormData] = useState({
     username: '',
@@ -20,6 +21,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     email: '',
   })
   const [error, setError] = useState('')
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const router = useRouter()
@@ -29,6 +31,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    setFieldErrors({})
     setLoading(true)
 
     try {
@@ -69,18 +72,28 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         }
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || '오류가 발생했습니다.')
+      // 로그인 실패 시 특별 처리
+      if (isLogin && err.response?.status === 500) {
+        setError('아이디 또는 비밀번호가 틀렸습니다.')
+        setFieldErrors({})
+      } else {
+        const errorMessage = getErrorMessage(err)
+        const errors = getFieldErrors(err)
+        
+        setError(errorMessage)
+        setFieldErrors(errors)
+      }
     } finally {
       setLoading(false)
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    })
-  }
+    }))
+  }, [])
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -112,8 +125,13 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 value={formData.username}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent ${
+                  fieldErrors.username ? 'border-red-500' : 'border-gray-300'
+                }`}
               />
+              {fieldErrors.username && (
+                <p className="mt-1 text-sm text-red-500">{fieldErrors.username}</p>
+              )}
             </div>
 
             <div>
@@ -127,8 +145,13 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent ${
+                  fieldErrors.password ? 'border-red-500' : 'border-gray-300'
+                }`}
               />
+              {fieldErrors.password && (
+                <p className="mt-1 text-sm text-red-500">{fieldErrors.password}</p>
+              )}
             </div>
 
             {!isLogin && (
@@ -145,8 +168,13 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                     onChange={handleChange}
                     required
                     maxLength={15}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent ${
+                      fieldErrors.nickname ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   />
+                  {fieldErrors.nickname && (
+                    <p className="mt-1 text-sm text-red-500">{fieldErrors.nickname}</p>
+                  )}
                 </div>
 
                 <div>
@@ -160,14 +188,21 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent ${
+                      fieldErrors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   />
+                  {fieldErrors.email && (
+                    <p className="mt-1 text-sm text-red-500">{fieldErrors.email}</p>
+                  )}
                 </div>
               </>
             )}
 
-            {error && (
-              <div className="text-red-500 text-sm">{error}</div>
+            {error && !Object.keys(fieldErrors).length && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-600 text-sm">{error}</p>
+              </div>
             )}
 
             <button
@@ -184,6 +219,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               onClick={() => {
                 setIsLogin(!isLogin)
                 setError('')
+                setFieldErrors({})
                 setFormData({ username: '', password: '', nickname: '', email: '' })
               }}
               className="text-sm text-primary hover:underline"
@@ -196,4 +232,6 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     </div>
   )
 }
+
+export default memo(LoginModal)
 

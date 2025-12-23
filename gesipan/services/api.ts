@@ -1,5 +1,6 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import type { ApiResponse, LoginRequest, RegisterRequest, LoginResponse, PostListDTO, PostDetailDTO, CreatePost, PatchPost } from '@/types/api'
+import { cache } from '@/utils/cache'
 
 const API_BASE_URL = 'http://localhost:8081'
 
@@ -8,6 +9,7 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000, // 10초 타임아웃
 })
 
 // 요청 인터셉터: 토큰 자동 추가
@@ -54,9 +56,20 @@ export const authApi = {
 // Post API
 export const postApi = {
   getPostList: async (page: number = 0, size: number = 10, sortType: string = 'RESENT'): Promise<ApiResponse<{ content: PostListDTO[]; totalElements: number; totalPages: number }>> => {
+    // 캐시 키 생성
+    const cacheKey = `postList_${page}_${size}_${sortType}`
+    const cached = cache.get<ApiResponse<{ content: PostListDTO[]; totalElements: number; totalPages: number }>>(cacheKey)
+    
+    if (cached) {
+      return cached
+    }
+
     const response = await apiClient.get<ApiResponse<{ content: PostListDTO[]; totalElements: number; totalPages: number }>>('/api/post', {
       params: { page, size, sortType },
     })
+    
+    // 30초 캐시
+    cache.set(cacheKey, response.data, 30000)
     return response.data
   },
   getMyPostList: async (page: number = 0, size: number = 10, sortType: string = 'RESENT'): Promise<ApiResponse<{ content: PostListDTO[]; totalElements: number; totalPages: number }>> => {
@@ -66,6 +79,7 @@ export const postApi = {
     return response.data
   },
   getPostDetail: async (id: number): Promise<ApiResponse<PostDetailDTO>> => {
+    // 게시글 상세는 조회수 증가가 있으므로 캐시하지 않음
     const response = await apiClient.get<ApiResponse<PostDetailDTO>>(`/api/post/${id}`)
     return response.data
   },

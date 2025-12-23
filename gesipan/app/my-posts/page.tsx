@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/store/store'
@@ -8,8 +8,9 @@ import { postApi } from '@/services/api'
 import type { PostListDTO } from '@/types/api'
 import Header from '@/components/Header'
 import Link from 'next/link'
-import { formatDistanceToNow } from 'date-fns'
-import { ko } from 'date-fns/locale'
+import { PostListSkeleton } from '@/components/SkeletonLoader'
+import { getErrorMessage } from '@/utils/errorHandler'
+import { cache } from '@/utils/cache'
 
 export default function MyPostsPage() {
   const router = useRouter()
@@ -19,15 +20,12 @@ export default function MyPostsPage() {
   const [page, setPage] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
-  useEffect(() => {
+  const fetchPosts = useCallback(async () => {
     if (!isAuthenticated) {
       router.push('/')
       return
     }
-    fetchPosts()
-  }, [page, isAuthenticated])
-
-  const fetchPosts = async () => {
+    
     try {
       setLoading(true)
       const response = await postApi.getMyPostList(page, 10, 'RESENT')
@@ -40,9 +38,13 @@ export default function MyPostsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [page, isAuthenticated, router])
 
-  const handleDelete = async (postId: number, e: React.MouseEvent) => {
+  useEffect(() => {
+    fetchPosts()
+  }, [fetchPosts])
+
+  const handleDelete = useCallback(async (postId: number, e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     
@@ -53,20 +55,14 @@ export default function MyPostsPage() {
     try {
       const response = await postApi.deletePost(postId)
       if (response.success) {
+        // 게시글 목록 캐시 무효화
+        cache.clear()
         fetchPosts()
       }
     } catch (error: any) {
-      alert(error.response?.data?.message || '게시글 삭제에 실패했습니다.')
+      alert(getErrorMessage(error))
     }
-  }
-
-  const formatDate = (dateString: string) => {
-    try {
-      return formatDistanceToNow(new Date(dateString), { addSuffix: true, locale: ko })
-    } catch {
-      return dateString
-    }
-  }
+  }, [fetchPosts])
 
   if (!isAuthenticated) {
     return null
@@ -99,8 +95,10 @@ export default function MyPostsPage() {
                     {post.title}
                   </h3>
                   <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>{post.username}</span>
-                    <span>{formatDate(post.createDateTime)}</span>
+                    <div className="flex items-center space-x-4">
+                      <span>{post.username}</span>
+                      <span>조회수: {post.views || post.Views || 0}</span>
+                    </div>
                   </div>
                 </Link>
                 <div className="mt-4 pt-4 border-t flex justify-end space-x-2">
